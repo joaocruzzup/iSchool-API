@@ -1,6 +1,6 @@
 package com.catalisa.iSchool.model.dto;
 
-import com.catalisa.iSchool.enums.NomesCursos;
+
 import com.catalisa.iSchool.model.Aluno;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
