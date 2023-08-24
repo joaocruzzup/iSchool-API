@@ -62,7 +62,6 @@ public class CursoControllerTest {
         CursoDTO curso1 = new CursoDTO("Engenharia", 30);
         Mockito.when(cursoService.listarPorId(idCurso)).thenReturn(Optional.of(curso1));
 
-        // Configurando o MockMVC
         mockMvc.perform(get("/api/ischool/cursos/{id}", idCurso))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -70,7 +69,6 @@ public class CursoControllerTest {
                 .andExpect(jsonPath("$.cargaHoraria").value("30"))
                 .andDo(print());
 
-        // Verificando se o método listarTodos do alunoService foi chamado uma vez
         Mockito.verify(cursoService, times(1)).listarPorId(Mockito.any());
 
     }

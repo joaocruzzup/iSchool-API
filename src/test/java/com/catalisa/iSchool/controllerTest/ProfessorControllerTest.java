@@ -75,7 +75,6 @@ public class ProfessorControllerTest {
         ProfessorDTO professor1 = new ProfessorDTO("Joao", 23, listaCursos, new BigDecimal(3000));
         Mockito.when(professorService.listarPorId(idProfessor)).thenReturn(Optional.of(professor1));
 
-        // Configurando o MockMVC
         mockMvc.perform(get("/api/ischool/professores/{id}", idProfessor))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -86,7 +85,6 @@ public class ProfessorControllerTest {
                 .andDo(print());
 
 
-        // Verificando se o método listarTodos do alunoService foi chamado uma vez
         Mockito.verify(professorService, times(1)).listarPorId(Mockito.any());
 
     }

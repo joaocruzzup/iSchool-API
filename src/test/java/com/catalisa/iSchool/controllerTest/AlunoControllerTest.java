@@ -34,7 +34,6 @@ class AlunoControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	//Mockando o Service
 	@MockBean
 	private AlunoService alunoService;
 
@@ -43,12 +42,10 @@ class AlunoControllerTest {
 	@DisplayName("Buscar todos os alunos ")
 	public void testeGetTodosAlunos() throws Exception {
 
-		// Criando uma lista de alunos para o alunoService retornar
 		AlunoDTO aluno1 = new AlunoDTO("João", 20, "joao@example.com");
 		AlunoDTO aluno2 = new AlunoDTO("Maria", 22, "maria@example.com");
 		Mockito.when(alunoService.listarTodos()).thenReturn(List.of(aluno1, aluno2));
 
-		// Configurando o MockMVC
 		mockMvc.perform(get("/api/ischool/alunos"))
 				.andExpect(status().isOk())
 				.andDo(print())
@@ -60,7 +57,6 @@ class AlunoControllerTest {
 				.andExpect(jsonPath("$[1].idade").value(22))
 				.andExpect(jsonPath("$[1].email").value("maria@example.com"));
 
-		// Verificando se o método listarTodos do alunoService foi chamado uma vez
 		Mockito.verify(alunoService, times(1)).listarTodos();
 
 	}
@@ -73,7 +69,6 @@ class AlunoControllerTest {
 		AlunoDTO aluno1 = new AlunoDTO("João", 20, "joao@example.com");
 		Mockito.when(alunoService.listarPorId(idAluno)).thenReturn(Optional.of(aluno1));
 
-		// Configurando o MockMVC
 		mockMvc.perform(get("/api/ischool/alunos/{id}", idAluno))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -82,7 +77,6 @@ class AlunoControllerTest {
 				.andExpect(jsonPath("$.email").value("joao@example.com"))
 				.andDo(print());
 
-		// Verificando se o método listarTodos do alunoService foi chamado uma vez
 		Mockito.verify(alunoService, times(1)).listarPorId(Mockito.any());
 
 	}
@@ -104,7 +98,6 @@ class AlunoControllerTest {
 				.andExpect(jsonPath("$.idade").value("26"))
 				.andExpect(jsonPath("$.email").value("iris@gmail.com"));
 
-//		 utilizando o mockito verify ocorre um erro. tentar corrigir mais tarde
 		Mockito.verify(alunoService, times(1)).criar(Mockito.any(alunoDTO.getClass()));
 
 	}

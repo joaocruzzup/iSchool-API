@@ -41,11 +41,9 @@ public class MatriculaControllerTest {
     @DisplayName("Buscar todos as matriculas usando MockMVC")
     public void testeGetTodasMatriculas() throws Exception {
 
-        // Criando uma lista de alunos para o alunoService retornar
         MatriculaDTO matricula1 = new MatriculaDTO(LocalDate.parse("2023-08-20"), "Joao", "Engenharia");
         Mockito.when(matriculaService.listarTodos()).thenReturn(List.of(matricula1));
 
-        // Configurando o MockMVC
         mockMvc.perform(get("/api/ischool/matriculas"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -55,7 +53,6 @@ public class MatriculaControllerTest {
                 .andDo(print());
 
 
-        // Verificando se o método listarTodos do alunoService foi chamado uma vez
         Mockito.verify(matriculaService, times(1)).listarTodos();
 
     }
@@ -68,7 +65,6 @@ public class MatriculaControllerTest {
         MatriculaDTO matricula1 = new MatriculaDTO(LocalDate.parse("2023-08-20"), "Joao", "Engenharia");
         Mockito.when(matriculaService.listarPorId(idMatricula)).thenReturn(Optional.of(matricula1));
 
-        // Configurando o MockMVC
         mockMvc.perform(get("/api/ischool/matriculas/{id}", idMatricula))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -78,7 +74,6 @@ public class MatriculaControllerTest {
                 .andDo(print());
 
 
-        // Verificando se o método listarTodos do alunoService foi chamado uma vez
         Mockito.verify(matriculaService, times(1)).listarPorId(Mockito.any());
 
     }
