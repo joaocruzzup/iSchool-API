@@ -1,6 +1,7 @@
 package com.catalisa.iSchool.service;
 
 import com.catalisa.iSchool.exception.AtributoNaoEncontradoException;
+import com.catalisa.iSchool.exception.EmailJaCadastradoException;
 import com.catalisa.iSchool.exception.IdNaoEncontradoException;
 import com.catalisa.iSchool.model.Aluno;
 import com.catalisa.iSchool.model.Curso;

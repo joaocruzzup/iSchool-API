@@ -1,6 +1,5 @@
 package com.catalisa.iSchool.service;
 
-import com.catalisa.iSchool.enums.NomesCursos;
 import com.catalisa.iSchool.exception.IdNaoEncontradoException;
 import com.catalisa.iSchool.model.Aluno;
 import com.catalisa.iSchool.model.Curso;
@@ -64,7 +63,7 @@ public class CursoService {
         }
         Curso cursoEncontrado = cursoOptional.get();
         if (cursoAtualizar.getNome() != null){
-            cursoEncontrado.setNome(String.valueOf(NomesCursos.valueOf(cursoAtualizar.getNome())));
+            cursoEncontrado.setNome(cursoAtualizar.getNome());
         }
         if (cursoAtualizar.getCargaHoraria() != null){
             cursoEncontrado.setCargaHoraria(cursoAtualizar.getCargaHoraria());
