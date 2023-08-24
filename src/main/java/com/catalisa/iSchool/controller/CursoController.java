@@ -35,8 +35,8 @@ public class CursoController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<CursoDTO> alterarCurso(@PathVariable Long id, @RequestBody CursoDTO cursoDTO){
-        CursoDTO novoAluno = cursoService.alterar(id, cursoDTO);
-        return ResponseEntity.ok(novoAluno);
+        CursoDTO novoCurso = cursoService.alterar(id, cursoDTO);
+        return ResponseEntity.ok(novoCurso);
     }
 
     @DeleteMapping(path = "/{id}")
